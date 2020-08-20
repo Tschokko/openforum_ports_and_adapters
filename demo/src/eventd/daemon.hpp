@@ -5,11 +5,12 @@
 #include <memory>
 
 #include "core/actions.hpp"
-
+#include "core/event_handler.hpp"
+#include "core/events.hpp"
 
 namespace eventd {
 
-class daemon {
+class daemon : public event::handler {
  protected:
   daemon() {}  // prevent instanciating a daemon class without required services
 
@@ -23,6 +24,14 @@ class daemon {
     action_info_led_->blink();
 
     return 0;
+  }
+
+  void handle_event(event::base const& ev) {
+    switch (ev.type()) {
+      case event::event_types::profile_changed:
+        action_info_led_->blink();
+        break;
+    }
   }
 
   void set_no_log() { no_log_ = true; }

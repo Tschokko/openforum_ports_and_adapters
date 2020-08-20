@@ -3,6 +3,8 @@
 #include <memory>
 
 #include "demo/src/eventd/core/actions.hpp"
+#include "demo/src/eventd/core/event_handler.hpp"
+#include "demo/src/eventd/core/events.hpp"
 #include "gtest/gtest.h"
 
 class info_led_action_dummy : public eventd::action::info_led {
@@ -24,6 +26,24 @@ TEST(eventd_daemon, run_sets_led_to_blinking) {
 
   // Act & Assert
   auto rc = daemon.run();
+
   ASSERT_EQ(rc, 0);
   ASSERT_TRUE(info_led_action->is_blinking);
+  ASSERT_FALSE(info_led_action->is_on);
+  ASSERT_FALSE(info_led_action->is_off);
+}
+
+TEST(eventd_daemon, handle_profile_changed_event) {
+  // Arrange
+  auto info_led_action = std::make_shared<info_led_action_dummy>();
+  eventd::daemon daemon{info_led_action};
+  daemon.set_no_log();
+
+  // Act & Assert
+  daemon.handle_event(eventd::event::make_profile_changed(
+      eventd::event::profile_changed_states::activated));
+
+  ASSERT_TRUE(info_led_action->is_blinking);
+  ASSERT_FALSE(info_led_action->is_on);
+  ASSERT_FALSE(info_led_action->is_off);
 }
