@@ -1,10 +1,7 @@
-bazel-Bazel_with_GTest/
-bazel-bin/
-bazel-genfiles/
-bazel-out/
-bazel-testlogs/
-bazel-template/
-bazel-openforum_ports_and_adapters/
+# Ignore all bazel-* symlinks. There is no full list since this can change
+# based on the name of the directory bazel is cloned into.
+/bazel-*
+
 third_party/
 bin/
 build/
