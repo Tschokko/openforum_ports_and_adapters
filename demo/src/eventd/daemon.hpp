@@ -5,7 +5,6 @@
 #include <memory>
 
 #include "actions.hpp"
-#include "events.hpp"
 
 namespace eventd {
 
@@ -17,23 +16,10 @@ class daemon {
   daemon(std::shared_ptr<action::info_led> action_info_led)
       : action_info_led_(action_info_led) {}
 
-  void handle_event(event::base const& ev) {
-    switch (ev.type()) {
-      case event::event_types::profile_changed:
-        action_info_led_->blink();
-        break;
-    }
-  }
-
-  void set_no_log() { no_log_ = true; }
+  void handle_event() { action_info_led_->blink(); }
 
  private:
-  bool no_log_ = false;
   std::shared_ptr<action::info_led> action_info_led_;
-
-  void log(std::string const& s) const {
-    if (!no_log_) std::cout << "[eventd] " << s << std::endl;
-  }
 };
 
 }  // namespace eventd

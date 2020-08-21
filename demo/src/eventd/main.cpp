@@ -2,7 +2,6 @@
 #include <memory>
 
 #include "daemon.hpp"
-#include "events.hpp"
 #include "impl/info_led_console_action.hpp"
 
 int main() {
@@ -10,8 +9,7 @@ int main() {
       std::make_shared<eventd::impl::info_led_console_action>();
   eventd::daemon daemon{info_led_action};
 
-  daemon.handle_event(eventd::event::make_profile_changed(
-      eventd::event::profile_changed_states::modified));
+  daemon.handle_event();
 
   return 0;
 }
