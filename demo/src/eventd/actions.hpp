@@ -1,5 +1,5 @@
-#ifndef EVENTD_CORE_ACTIONS_HPP__
-#define EVENTD_CORE_ACTIONS_HPP__
+#ifndef EVENTD_ACTIONS_HPP__
+#define EVENTD_ACTIONS_HPP__
 
 namespace eventd {
 namespace action {
@@ -18,4 +18,4 @@ class info_led {
 }  // namespace action
 }  // namespace eventd
 
-#endif  // EVENTD_CORE_ACTIONS_HPP__
+#endif  // EVENTD_ACTIONS_HPP__

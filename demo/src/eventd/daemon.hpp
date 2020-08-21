@@ -4,27 +4,18 @@
 #include <iostream>
 #include <memory>
 
-#include "core/actions.hpp"
-#include "core/event_handler.hpp"
-#include "core/events.hpp"
+#include "actions.hpp"
+#include "events.hpp"
 
 namespace eventd {
 
-class daemon : public event::handler {
+class daemon {
  protected:
-  daemon() {}  // prevent instanciating a daemon class without required services
+  daemon() {}  // prevent instanciation of a daemon without required services
 
  public:
   daemon(std::shared_ptr<action::info_led> action_info_led)
       : action_info_led_(action_info_led) {}
-
-  int run() {
-    log("daemon started");
-    log("set info led to blinking");
-    action_info_led_->blink();
-
-    return 0;
-  }
 
   void handle_event(event::base const& ev) {
     switch (ev.type()) {
