@@ -2,11 +2,11 @@
 #include <memory>
 
 #include "daemon.hpp"
-#include "impl/info_led_console_action.hpp"
+#include "impl/console_info_led.hpp"
 
 int main() {
   auto info_led_action =
-      std::make_shared<eventd::impl::info_led_console_action>();
-  eventd::daemon daemon{info_led_action};
-  return daemon.run();
+      std::make_shared<eventd::actions::impl::ConsoleInfoLED>();
+  eventd::Daemon daemon{info_led_action};
+  return daemon.Run();
 }
