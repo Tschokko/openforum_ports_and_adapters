@@ -35,3 +35,14 @@ cc_test(
         "@googletest//:gtest_main",
     ],
 )
+
+cc_binary(
+    name = "httpd",
+    srcs = ["src/httpd.c"],
+    deps = [
+        "//demo",
+    ],
+    linkopts = [
+        "-lmicrohttpd"
+    ],
+)
