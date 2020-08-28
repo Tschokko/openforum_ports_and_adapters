@@ -9,7 +9,7 @@ namespace eventd {
 namespace actions {
 namespace impl {
 
-class ConsoleInfoLED : public actions::InfoLED {
+class ConsoleInfoLED : public actions::InfoLedAction {
  public:
   void On() { std::cout << "info led on" << std::endl; };
   void Off() { std::cout << "info led off" << std::endl; };

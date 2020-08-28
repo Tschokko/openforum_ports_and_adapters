@@ -10,7 +10,9 @@ namespace eventd {
 
 class Daemon {
  public:
-  explicit Daemon(std::shared_ptr<actions::InfoLED> info_led_action)
+  typedef std::shared_ptr<actions::InfoLedAction> InfoLedActionPtr;
+
+  Daemon(InfoLedActionPtr const& info_led_action)
       : info_led_action_(info_led_action) {}
 
   int Run() {
@@ -22,7 +24,7 @@ class Daemon {
   Daemon() {}  // prevent instanciating a daemon class without required services
 
  private:
-  std::shared_ptr<actions::InfoLED> info_led_action_;
+  InfoLedActionPtr info_led_action_;
 };
 
 }  // namespace eventd

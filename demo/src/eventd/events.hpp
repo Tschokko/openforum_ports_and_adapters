@@ -7,14 +7,34 @@ namespace eventd {
 namespace events {
 
 // -----------------------------------------------------------------------------
+// Base event
+// -----------------------------------------------------------------------------
+
+enum class EventTypes : int { kProfileChanged = 1, kInputStateChanged = 2 };
+
+class BaseEvent {
+ public:
+  virtual ~BaseEvent() = default;
+  EventTypes type() const { return type_; }
+
+ protected:
+  BaseEvent(EventTypes type) : type_(type) {}
+
+ private:
+  BaseEvent() {}  // Prevent an instance of BaseEvent
+  EventTypes type_;
+};
+
+// -----------------------------------------------------------------------------
 // Profile changed
 // -----------------------------------------------------------------------------
 
 enum class ProfileStates : int { kModified = 1, kActivated = 2 };
 
-class ProfileChanged {
+class ProfileEvent : public BaseEvent {
  public:
-  ProfileChanged(ProfileStates state) : state_(state) {}
+  ProfileEvent(ProfileStates state)
+      : BaseEvent(EventTypes::kProfileChanged), state_(state) {}
 
   ProfileStates state() const { return state_; }
 
@@ -22,26 +42,28 @@ class ProfileChanged {
   ProfileStates state_;
 };
 
-class ProfileChangedListener {
+class ProfileEventListener {
  public:
-  virtual ~ProfileChangedListener() {}
-  virtual void Listen(ProfileChanged&& event) = 0;
+  virtual ~ProfileEventListener() = default;
+  virtual void Listen(ProfileEvent&& event) = 0;
 
  protected:
-  ProfileChangedListener() {}
+  ProfileEventListener() {}
 };
 
 
 // -----------------------------------------------------------------------------
-// Input state changed
+// Input state event
 // -----------------------------------------------------------------------------
 
 enum class InputStates : int { kHigh = 1, kLow = 2 };
 
-class InputStateChanged {
+class InputStateEvent : public BaseEvent {
  public:
-  InputStateChanged(std::string const& input, InputStates state)
-      : input_(input), state_(state) {}
+  InputStateEvent(std::string const& input, InputStates state)
+      : BaseEvent(EventTypes::kInputStateChanged),
+        input_(input),
+        state_(state) {}
 
   std::string input() const { return input_; }
   InputStates state() const { return state_; }
@@ -51,13 +73,13 @@ class InputStateChanged {
   InputStates state_;
 };
 
-class InputStateChangedListener {
+class InputStateEventListener {
  public:
-  virtual ~InputStateChangedListener() {}
-  virtual void Listen(InputStateChanged&& event) = 0;
+  virtual ~InputStateEventListener() = default;
+  virtual void Listen(InputStateEvent&& event) = 0;
 
  protected:
-  InputStateChangedListener() {}
+  InputStateEventListener() {}
 };
 
 }  // namespace events

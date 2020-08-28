@@ -4,15 +4,15 @@
 namespace eventd {
 namespace actions {
 
-class InfoLED {
+class InfoLedAction {
  public:
-  virtual ~InfoLED() {}
+  virtual ~InfoLedAction() = default;
   virtual void On() = 0;
   virtual void Off() = 0;
   virtual void Blink() = 0;
 
  protected:
-  InfoLED() {}
+  InfoLedAction() {}
 };
 
 }  // namespace actions

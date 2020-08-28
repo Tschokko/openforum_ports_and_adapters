@@ -6,7 +6,7 @@
 #include "demo/src/eventd/events.hpp"
 #include "gtest/gtest.h"
 
-class InfoLEDActionDummy : public eventd::actions::InfoLED {
+class DummyInfoLedAction : public eventd::actions::InfoLedAction {
  public:
   bool is_on = false;
   bool is_off = false;
@@ -19,7 +19,7 @@ class InfoLEDActionDummy : public eventd::actions::InfoLED {
 
 TEST(eventd_daemon, run_sets_led_to_blinking) {
   // Arrange
-  auto info_led_action = std::make_shared<InfoLEDActionDummy>();
+  auto info_led_action = std::make_shared<DummyInfoLedAction>();
   eventd::Daemon daemon{info_led_action};
 
   // Act & Assert
