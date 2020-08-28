@@ -9,7 +9,7 @@ cc_library(
             "src/**/*.ipp",
         ],
         exclude = [
-            "src/eventd/main.cpp",
+            "src/main.cpp",
         ],
     ),
     hdrs = glob([
@@ -20,8 +20,8 @@ cc_library(
 )
 
 cc_binary(
-    name = "eventd",
-    srcs = ["src/eventd/main.cpp"],
+    name = "user",
+    srcs = ["src/main.cpp"],
     deps = [
         "//demo",
     ],
