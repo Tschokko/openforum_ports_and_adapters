@@ -1,5 +1,5 @@
-#ifndef USER_MODELS_HPP__
-#define USER_MODELS_HPP__
+#ifndef USER_CORE_MODELS_HPP__
+#define USER_CORE_MODELS_HPP__
 
 #include <string>
 
@@ -44,4 +44,4 @@ inline User MakeUser(bool is_active, std::string const& username,
 }  // namespace core
 }  // namespace user
 
-#endif  // USER_MODELS_HPP__
+#endif  // USER_CORE_MODELS_HPP__

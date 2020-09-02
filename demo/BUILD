@@ -17,11 +17,15 @@ cc_library(
         "src/**/*.hpp",
     ]),
     visibility = ["//visibility:public"],
+    deps = [
+        "@boost//:property_tree",
+        "@served//:served",
+    ]
 )
 
 cc_binary(
     name = "user",
-    srcs = ["src/main.cpp"],
+    srcs = glob(["src/main.cpp"]),
     deps = [
         "//demo",
     ],
@@ -38,11 +42,8 @@ cc_test(
 
 cc_binary(
     name = "httpd",
-    srcs = ["src/httpd.c"],
+    srcs = glob(["src/httpd.cpp"]),
     deps = [
         "//demo",
-    ],
-    linkopts = [
-        "-lmicrohttpd"
-    ],
+    ]
 )

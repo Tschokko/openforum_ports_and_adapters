@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/root/.cache/bazel/_bazel_root/e885cee05f033c1faa1dd4a57fe02f33/external/served/src",
+                "/root/.cache/bazel/_bazel_root/e885cee05f033c1faa1dd4a57fe02f33/external/boost"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu18",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}

@@ -1,5 +1,5 @@
-#ifndef USER_PORTS_HPP__
-#define USER_PORTS_HPP__
+#ifndef USER_CORE_PORTS_HPP__
+#define USER_CORE_PORTS_HPP__
 
 #include <string>
 
@@ -36,4 +36,4 @@ class UserRepository {
 }  // namespace core
 }  // namespace user
 
-#endif  // USER_PORTS_HPP__
+#endif  // USER_CORE_PORTS_HPP__

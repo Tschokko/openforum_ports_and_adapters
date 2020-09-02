@@ -1,5 +1,5 @@
-#ifndef USER_SERVICE_HPP__
-#define USER_SERVICE_HPP__
+#ifndef USER_CORE_SERVICE_HPP__
+#define USER_CORE_SERVICE_HPP__
 
 #include <iostream>
 #include <memory>
@@ -47,4 +47,4 @@ class UserService : public UserManager {
 }  // namespace core
 }  // namespace user
 
-#endif  // USER_PORTS_HPP__
+#endif  // USER_CORE_SERVICE_HPP__
